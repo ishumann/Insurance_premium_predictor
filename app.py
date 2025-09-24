@@ -1,4 +1,5 @@
 from schema.user_input import UserInput
+from schema.prediction_response import PredictionResponse
 from model.predict import predict, model, MODEL_VERSION
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
@@ -26,7 +27,7 @@ def health_check():
     }
 
 
-@app.post('/predict')
+@app.post('/predict', response_model=PredictionResponse)
 def predict_premium(data: UserInput):
     # Load model lazily
 
